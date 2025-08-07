@@ -20,7 +20,7 @@ const Newscontainer = ({ apikey, q, pagesize = 8, setprogress, category }) => {
             setprogress(10);
             setLoading(true);
             // const url = `https://newsapi.org/v2/everything?q=${q}&apiKey=${apikey}&page=${pageNumber}&pagesize=${pagesize}`;
-            const url=`http://localhost:5000/user/api/news?q=${q}&page=${pageNumber}&pagesize=${pagesize}`
+            const url=`https://sangbad-bangla-server-lufp.onrender.com/user/api/news?q=${q}&page=${pageNumber}&pagesize=${pagesize}`
              setprogress(30);
             const res = await fetch(url);
             const data = await res.json();
