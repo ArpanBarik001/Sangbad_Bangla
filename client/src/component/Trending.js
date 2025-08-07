@@ -6,7 +6,7 @@ const TrendingNews = ({ newsList }) => {
 
   return (
     <div className="trending-news-container">
-      <h2 className="trending-title">🔥 Trending News</h2>
+      <h2 className="trending-title">🔥 ট্রেন্ডিং খবর</h2>
       {topFiveNews.map((news, index) => (
         <div key={index} className="news-card">
           <h4 className="news-title">{news.category}</h4>

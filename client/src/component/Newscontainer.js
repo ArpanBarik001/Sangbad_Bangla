@@ -19,8 +19,9 @@ const Newscontainer = ({ apikey, q, pagesize = 8, setprogress, category }) => {
         try {
             setprogress(10);
             setLoading(true);
-            const url = `https://newsapi.org/v2/everything?q=${q}&apiKey=${apikey}&page=${pageNumber}&pagesize=${pagesize}`;
-            setprogress(30);
+            // const url = `https://newsapi.org/v2/everything?q=${q}&apiKey=${apikey}&page=${pageNumber}&pagesize=${pagesize}`;
+            const url=`http://localhost:5000/user/api/news?q=${q}&page=${pageNumber}&pagesize=${pagesize}`
+             setprogress(30);
             const res = await fetch(url);
             const data = await res.json();
             setprogress(70);
@@ -64,7 +65,7 @@ const Newscontainer = ({ apikey, q, pagesize = 8, setprogress, category }) => {
         .filter(link => link.category === category)
         .slice(-5)
         .reverse(); // latest first
-        console.log("categoryEditorialLinks", categoryEditorialLinks); 
+        // console.log("categoryEditorialLinks", categoryEditorialLinks); 
 
         // console.log("Filtered for category:", category, categoryEditorialLinks);
 

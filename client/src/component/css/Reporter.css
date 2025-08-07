@@ -1,4 +1,4 @@
-/* Reporter.css */
+
 
 .reporter-container {
   background-color: #f9fbff;
@@ -10,7 +10,7 @@
   font-family: 'Segoe UI', sans-serif;
   color: #1d3557;
   transition: all 0.3s ease;
-} */
+} 
 
 .dashboard-title {
   text-align: center;
@@ -81,7 +81,7 @@
   font-size: 1.2rem;
 }
 
-/* Responsive Styles */
+
  @media screen and (max-width: 768px) {
   .reporter-container {
     padding: 1.5rem;

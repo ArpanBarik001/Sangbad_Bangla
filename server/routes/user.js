@@ -1,6 +1,7 @@
 import express from "express";
 import gravatar from 'gravatar';
 import bcrypt from 'bcryptjs';
+import fetch from "node-fetch";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
 import { validateRegisterInput } from "../validation/register.js";
@@ -10,6 +11,22 @@ import { secretOrkey } from "../config.js";
 
 
 const router=express.Router();
+
+
+
+router.get('/api/news', async (req, res) => {
+  const q = req.query.q;
+  const API_KEY = '7d5570bb14064d98a720f7602030c7c9';
+  const url = `https://newsapi.org/v2/everything?q=${q}&apiKey=${API_KEY}`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching news" });
+  }
+});
+
 
 router.post('/register', async (req, res) => {
     try {

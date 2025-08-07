@@ -1,4 +1,4 @@
-import './App.css';
+
 import Register from './component/Register.js';
 import Login from './component/Login.js';
 import LoadingBar from 'react-top-loading-bar';
@@ -20,7 +20,7 @@ function App() {
   const [progress, setProgress] = useState(0);
   return (
     <div>
-      {/* <Navbar/> */}
+      
       <LoadingBar height={3} color="#f11946" progress={progress} />
       <BrowserRouter>
         <Navbar/>
@@ -159,69 +159,10 @@ function App() {
               />
             }
           />
-            {/* <Route
-            path="/face"
-            element={
-              <Newscontainer
-                setprogress={setProgress}
-                apikey={apikey}
-                key="general"
-                category="popular"
-                q="বাংলারমুখ"
-              />
-            }
-          />
-            <Route
-            path="/bioscope"
-            element={
-              <Newscontainer
-                setprogress={setProgress}
-                apikey={apikey}
-                key="general"
-                category="bioscope"
-                q="বায়োস্কোপ"
-              />
-            }
-          />
-            <Route
-            path="/webstory"
-            element={
-              <Newscontainer
-                setprogress={setProgress}
-                apikey={apikey}
-                key="general"
-                category="webstory"
-                q="ওয়েবস্টোরি"
-              />
-            }
-          />
-            <Route
-            path="/littlethings"
-            element={
-              <Newscontainer
-                setprogress={setProgress}
-                apikey={apikey}
-                key="general"
-                category="littlethings"
-                q="টুকিটাকি"
-              />
-            }
-          />
-            <Route
-            path="/gallery"
-            element={
-              <Newscontainer
-                setprogress={setProgress}
-                apikey={apikey}
-                key="general"
-                category="gallery"
-                q="ছবিঘর"
-              />
-            }
-          /> */}
+            
           <Route path="/edit" element={<Editor />} />
           <Route path="/report" element={<Reporter />} />
-          {/* <Route path="/landing" element={<Landing/>} /> */}
+          
           <Route path="/admin" element={<Admin/>} />
         </Routes>
       </BrowserRouter>

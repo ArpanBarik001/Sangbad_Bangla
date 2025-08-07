@@ -1,4 +1,4 @@
-/* Basic Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +9,7 @@ body {
   font-family: 'Hind Siliguri', sans-serif;
 }
 
-/* Navbar */
+
 .ht-navbar {
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* Logo */
+
 .ht-logo a {
   font-size: 1.5rem;
   font-weight: bold;
@@ -57,7 +57,7 @@ body {
   color: #222;
 }
 
-/* Nav Links */
+
 .ht-nav-links {
   list-style: none;
   display: flex;
@@ -81,7 +81,7 @@ body {
   color: #000;
 }
 
-/* Responsive (Mobile) */
+
 @media (max-width: 768px) {
   .ht-navbar {
     overflow-x: hidden;
@@ -100,11 +100,11 @@ body {
     white-space: nowrap;
     gap: 0.5rem;
     padding: 10px;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none; 
   }
 
   .ht-nav-links::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+    display: none; 
   }
 
   .ht-nav-links li {
