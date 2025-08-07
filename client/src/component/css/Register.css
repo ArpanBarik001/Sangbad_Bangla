@@ -1,0 +1,134 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.signup {
+  background-color: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.signup h2 {
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+.inputBox {
+  position: relative;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.inputBox input,
+.inputBox select {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+.inputBox input:focus,
+.inputBox select:focus {
+  outline: none;
+  border-color: #999;
+  background-color: #fff;
+}
+
+.inputBox span {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #666;
+}
+
+.inputBox i {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: #888;
+}
+
+.inputBox div {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.inputBox input[type="submit"] {
+  background-color: #223243;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.inputBox input[type="submit"]:hover {
+  background-color: #1a2630;
+}
+
+.login {
+  color: #223243;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.login:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+  .signup {
+    padding: 30px 20px;
+    max-width: 90%;
+  }
+
+  .signup h2 {
+    font-size: 24px;
+  }
+
+  .inputBox input,
+  .inputBox select {
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup {
+    padding: 25px 15px;
+  }
+
+  .signup h2 {
+    font-size: 20px;
+  }
+
+  .inputBox input,
+  .inputBox select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .inputBox span {
+    font-size: 13px;
+  }
+
+  .inputBox div {
+    font-size: 12px;
+    color: red;
+  }
+}
