@@ -9,29 +9,77 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 const Newscontainer = ({ apikey, q, pagesize = 8, setprogress, category }) => {
     const [articles, setArticles] = useState([]);
-    const [page, setPage] = useState(1);
+    const [nextPageId, setNextPageId] = useState(null); 
+    // const [page, setPage] = useState(1);
     const [totalResults, setTotalResults] = useState(0);
     const [loading, setLoading] = useState(true);
     const [editorialLinks, setEditorialLinks] = useState([]);
 
     // Fetch news articles from API
-    const fetchNews = async (pageNumber = 1) => {
+    // const fetchNews = async (pageNumber = 1) => {
+    //     try {
+    //         setprogress(10);
+    //         setLoading(true);
+    //         // const url = `https://newsapi.org/v2/everything?q=${q}&apiKey=${apikey}&page=${pageNumber}&pagesize=${pagesize}`;
+    //         const url=`http://localhost:5000/user/api/news?q=${q}&page=${pageNumber}&pagesize=${pagesize}`
+    //          setprogress(30);
+    //         const res = await fetch(url);
+    //         const data = await res.json();
+    //         setprogress(70);
+    //         if (pageNumber === 1) {
+    //             setArticles(data.articles);
+    //         } else {
+    //             setArticles(prev => [...prev, ...data.articles]);
+    //         }
+    //         setTotalResults(data.totalResults);
+    //         setLoading(false);
+    //         setprogress(100);
+    //     } catch (error) {
+    //         console.error('Error fetching news:', error);
+    //         setLoading(false);
+    //     }
+    // };
+
+    // Initial fetch on mount or query change
+    // useEffect(() => {
+    //     fetchNews(1);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [q]);
+
+    // Load more articles for infinite scroll
+    // const fetchMoreData = async () => {
+    //     const nextPage = page + 1;
+    //     setPage(nextPage);
+    //     await fetchNews(nextPage);
+    // };
+
+     const fetchNews = async (pageToken = null) => {
         try {
             setprogress(10);
             setLoading(true);
-            // const url = `https://newsapi.org/v2/everything?q=${q}&apiKey=${apikey}&page=${pageNumber}&pagesize=${pagesize}`;
-            const url=`http://localhost:5000/user/api/news?q=${q}&page=${pageNumber}&pagesize=${pagesize}`
-             setprogress(30);
+
+            // Backend route calling NewsData.io
+            // Example: http://localhost:5000/user/api/news?lang=bn&category=sports
+            let url = `http://localhost:5000/user/api/news?language=bn&size=${pagesize}`;
+            if (q) url += `&q=${encodeURIComponent(q)}`;
+            if (category) url += `&category=${category}`;
+            if (pageToken) url += `&page=${pageToken}`;
+
+            setprogress(30);
             const res = await fetch(url);
             const data = await res.json();
             setprogress(70);
-            if (pageNumber === 1) {
-                setArticles(data.articles);
+
+            // NewsData.io returns "results" array and "nextPage" token
+            if (!pageToken) {
+                setArticles(data.results || []);
             } else {
-                setArticles(prev => [...prev, ...data.articles]);
+                setArticles(prev => [...prev, ...(data.results || [])]);
             }
-            setTotalResults(data.totalResults);
+
+            setNextPageId(data.nextPage || null); // Save token for next load
             setLoading(false);
+            setTotalResults(data.totalResults);
             setprogress(100);
         } catch (error) {
             console.error('Error fetching news:', error);
@@ -39,18 +87,18 @@ const Newscontainer = ({ apikey, q, pagesize = 8, setprogress, category }) => {
         }
     };
 
-    // Initial fetch on mount or query change
+    // Initial fetch on mount or query/category change
     useEffect(() => {
-        fetchNews(1);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [q]);
+        fetchNews(null); // First page has no token
+    }, [q, category]); // re-fetch when query or category changes
 
     // Load more articles for infinite scroll
     const fetchMoreData = async () => {
-        const nextPage = page + 1;
-        setPage(nextPage);
-        await fetchNews(nextPage);
+        if (nextPageId) {
+            await fetchNews(nextPageId);
+        }
     };
+
 
     // Get editorial links from localStorage once
     useEffect(() => {
@@ -90,13 +138,13 @@ const Newscontainer = ({ apikey, q, pagesize = 8, setprogress, category }) => {
                     {articles.map((element, idx) => (
                         <div className="col-md-5 my-2 newsitem" key={idx}>
                             <Newsitem
-                                name={element.source.name}
-                                author={element.author}
-                                time={element.publishedAt}
+                                name={element.source_id}
+                                author={element.creator}
+                                time={element.pubDate}
                                 title={element.title ? element.title.slice(0, 44) : ""}
                                 description={element.description ? element.description.slice(0, 88) : ""}
-                                imageUrl={element.urlToImage || 'https://static.files.bbci.co.uk/ws/simorgh-assets/public/sport/images/metadata/poster-1024x576.png'}
-                                newsUrl={element.url}
+                                imageUrl={element.image_url || 'https://static.files.bbci.co.uk/ws/simorgh-assets/public/sport/images/metadata/poster-1024x576.png'}
+                                newsUrl={element.link}
                             />
                         </div>
                     ))}

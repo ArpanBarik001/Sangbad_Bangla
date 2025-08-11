@@ -34,7 +34,7 @@ function App() {
                 setprogress={setProgress}
                 apikey={apikey}
                 key="general"
-                category="general"
+                category=""
                 q="বাংলা"
               />
             }
@@ -70,19 +70,19 @@ function App() {
                 setprogress={setProgress}
                 apikey={apikey}
                 key="general"
-                category="opinion"
+                category="politics"
                 q="মতামত"
               />
             }
           />
           <Route
-            path="/kolkata"
+            path="/environment"
             element={
               <Newscontainer
                 setprogress={setProgress}
                 apikey={apikey}
                 key="general"
-                category="kolkata"
+                category="environment"
                 q="কলকাতা"
               />
             }
@@ -100,13 +100,13 @@ function App() {
             }
           />
             <Route
-            path="/lifestyle"
+            path="/food"
             element={
               <Newscontainer
                 setprogress={setProgress}
                 apikey={apikey}
                 key="general"
-                category="lifestyle"
+                category="food"
                 q="জীবনযাপন"
               />
             }
@@ -142,19 +142,19 @@ function App() {
                 setprogress={setProgress}
                 apikey={apikey}
                 key="general"
-                category="popular"
+                category="top"
                 q="জনপ্রিয়"
               />
             }
           />
             <Route
-            path="/cricket"
+            path="/health"
             element={
               <Newscontainer
                 setprogress={setProgress}
                 apikey={apikey}
                 key="general"
-                category="cricket"
+                category="health"
                 q="ক্রিকেট"
               />
             }

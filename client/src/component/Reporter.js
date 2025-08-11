@@ -59,7 +59,7 @@ const Reporter = () => {
     <div className="reporter-container">
       <h2 className="dashboard-title">📰 Reporter Dashboard</h2>
       <img
-        src={localStorage.getItem('userAvatar')}
+        src={'https://static.files.bbci.co.uk/ws/simorgh-assets/public/sport/images/metadata/poster-1024x576.png'}
         alt="Reporter Avatar"
         className="avatar"
       />

@@ -12,20 +12,35 @@ import { secretOrkey } from "../config.js";
 
 const router=express.Router();
 
+router.get("/api/news", async (req, res) => {
+    const { q, category, language = "bn", size = 8, page } = req.query;
+    let apiUrl = `https://newsdata.io/api/1/news?apikey=pub_cdf19ec3f7154bdf8ca5dcfc95d92fb5&language=${language}&size=${size}`;
 
+    if (q) apiUrl += `&q=${encodeURIComponent(q)}`;
+    if (category) apiUrl += `&category=${category}`;
+    if (page) apiUrl += `&page=${page}`;
 
-router.get('/api/news', async (req, res) => {
-  const q = req.query.q;
-  const API_KEY = '7d5570bb14064d98a720f7602030c7c9';
-  const url = `https://newsapi.org/v2/everything?q=${q}&apiKey=${API_KEY}`;
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: "Error fetching news" });
-  }
+    try {
+        const r = await fetch(apiUrl);
+        const data = await r.json();
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: "Failed to fetch news" });
+    }
 });
+
+// router.get('/api/news', async (req, res) => {
+//   const q = req.query.q;
+//   // const API_KEY = '7d5570bb14064d98a720f7602030c7c9';
+//   const url = `https://newsdata.io/api/1/archive?apikey=pub_cdf19ec3f7154bdf8ca5dcfc95d92fb5&language=bn`;
+//   try {
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     res.json(data);
+//   } catch (err) {
+//     res.status(500).json({ error: "Error fetching news" });
+//   }
+// });
 
 
 router.post('/register', async (req, res) => {
