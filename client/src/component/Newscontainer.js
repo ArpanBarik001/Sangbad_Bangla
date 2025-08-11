@@ -60,7 +60,7 @@ const Newscontainer = ({ apikey, q, pagesize = 8, setprogress, category }) => {
 
             // Backend route calling NewsData.io
             // Example: http://localhost:5000/user/api/news?lang=bn&category=sports
-            let url = `http://localhost:5000/user/api/news?language=bn&size=${pagesize}`;
+            let url = `https://sangbad-bangla-server.onrender.com/user/api/news?language=bn&size=${pagesize}`;
             if (q) url += `&q=${encodeURIComponent(q)}`;
             if (category) url += `&category=${category}`;
             if (pageToken) url += `&page=${pageToken}`;
