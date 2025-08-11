@@ -13,7 +13,7 @@ export default function Admin() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/user/stats');
+        const response = await axios.get('https://sangbad-bangla-server.onrender.com/user/stats');
         setStats(response.data);
       } catch (err) {
         console.error('Failed to fetch stats:', err.response?.data || err.message);
