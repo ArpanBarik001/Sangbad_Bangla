@@ -24,7 +24,7 @@ const Reporter = () => {
       return;
     }
 
-    axios.post('http://localhost:5000/user/get-reporter', { email: userEmail })
+    axios.post('https://sangbad-bangla-server.onrender.com/user/get-reporter', { email: userEmail })
       .then(res => {
         setReporterData(res.data);
         setAddress(res.data.address || '');
