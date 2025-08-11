@@ -22,7 +22,7 @@ export default function Register() {
             role
         };
         axios
-        .post("http://localhost:5000/user/register",data)
+        .post("https://sangbad-bangla-server.onrender.com/user/register",data)
         .then((response)=>{
             localStorage.setItem("userAvatar", response.data.avatar);
             // console.log(data);
